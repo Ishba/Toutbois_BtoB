@@ -9,3 +9,92 @@ body {
 #resultat2 {
   display: none;
 }
+
+div h2 {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+div h6 {
+  margin-bottom: 40px;
+}
+
+.pagination_site {
+  margin-top: 30px;
+}
+
+.float-droit-menu {
+  float: right;
+  text-align: right;
+}
+
+@media (max-width: 992px) {
+  .float-droit-menu {
+    float: none;
+    text-align: inherit;
+  }
+}
+
+/* Listing produits */
+
+
+div .card {
+  margin-bottom: 20px;
+  padding-top: 12px;
+  margin-right: 18px;
+  margin-left: 18px;
+  display: inline-flex;
+}
+
+.card_corps {
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  width: 50%;
+  display: inline;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.float-droit {
+  float: right;
+  text-align: right;
+}
+
+/* Liste commandes */
+
+div .table td, .table th {
+  vertical-align: middle;
+}
+
+/* panier */
+
+.select-qte {
+  padding-top: 15px;
+  padding-left: 0;
+}
+
+/* BO */
+
+.sans-puce {
+  list-style-type: none;
+  margin-bottom: 40px;
+}
+
+.bouton-groupe {
+  margin-top: 20px;
+}
+
+.margin-bas {
+  margin-bottom: 20px;
+}
+
+body #customFile .custom-file-control:lang(fr)::after {
+  content: "Select file...";
+}
+
+body #customFile .custom-file-control:lang(fr)::before {
+  content: "Click me";
+}
