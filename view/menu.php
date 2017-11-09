@@ -19,7 +19,7 @@
             <a class="nav-link" href="archives.php">Commandes en cours</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="panier.php">Panier <span class="badge badge-primary badge-pill"><?= $panier->count(); ?></span></a>
+            <a class="nav-link" href="panier.php">Panier <span class="badge badge-primary badge-pill"><span id="count"><?= $panier->count(); ?></span></span></a>
           </li>
         </ul>
       </div>
