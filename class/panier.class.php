@@ -12,6 +12,13 @@
         $_SESSION['panier'] = array();
       }
       $this->DB = $DB;
+      if(isset($_GET['delPanier'])) {
+        $this->del($_GET['delPanier']);
+      }
+    }
+
+    public function count() {
+      return array_sum($_SESSION['panier']);
     }
 
     public function total() {

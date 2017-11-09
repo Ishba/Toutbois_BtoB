@@ -4,9 +4,9 @@
 ?>
 
 <?php
-	if(isset($_GET['del'])) {
-		$panier->del($_GET['del']);
-	}
+	//if(isset($_GET['del'])) {
+		//$panier->del($_GET['del']);
+	//}
 ?>
 
 <h2>Mon panier</h2>
@@ -50,7 +50,7 @@
       </td>
       <td><?php echo number_format($produit->pu, 2, ',', ' '); ?> €</td>
 			<td><?php echo number_format($produit->pu * 1.196, 2, ',', ' '); ?> €</td>
-      <td><a href="panier.php?del=<?= $produit->id_produit; ?>"><button type="button" class="btn btn-outline-danger">X</button></a></td>
+      <td><a href="panier.php?delPanier=<?= $produit->id_produit; ?>"><button type="button" class="btn btn-outline-danger">X</button></a></td>
     </tr>
 	<?php endforeach; ?>
 
