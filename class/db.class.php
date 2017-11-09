@@ -7,6 +7,7 @@
     private $database = 'toutbois_btob';
     private $db;
 
+
     public function __construct($host = null, $username = null, $password = null, $database = null) {
       if($host != null){
         $this->host = $host;
@@ -32,6 +33,12 @@
       $req = $this->db->prepare($sql);
     	$req->execute($data);
     	return $req->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function nbArticle($sql) {
+      $req = $this->db->prepare($sql);
+    	$req->execute();
+    	return $req->fetchColumn();
     }
 
   }
