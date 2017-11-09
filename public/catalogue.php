@@ -1,13 +1,18 @@
 <?php
 	require_once('../view/haut.php');
 	require_once('../view/menu.php');
+  require('../class/pagination.class.php');
 ?>
 
 
 
 <h2>Commander</h2>
 
-<?php $produits = $DB->query('SELECT * FROM produit'); ?>
+<?php $produits = $DB->query('SELECT * FROM produit ORDER BY id_produit LIMIT '.$firstArtPage.', '.$perpage); ?>
+
+<?php require('../view/pagination.article.php'); ?>
+
+
 <?php foreach ($produits as $produit): ?>
 	<div class="card col-md-4" style="width: 20rem;">
 		<img class="card-img-top" src="../img/<?= $produit->image; ?>.jpg" alt="<?php echo $produit->image; ?>">
@@ -22,7 +27,7 @@
 	</div>
 <?php endforeach ?>
 
-
+<?php require('../view/pagination.article.php'); ?>
 
 
 <?php
