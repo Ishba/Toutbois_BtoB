@@ -4,24 +4,10 @@
 ?>
 
 
-
-<h2>Commander</h2>
-
-<?php $produits = $DB->query('SELECT * FROM produit'); ?>
-<?php foreach ($produits as $produit): ?>
-	<div class="card col-md-4" style="width: 20rem;">
-		<img class="card-img-top" src="../img/<?= $produit->image; ?>.jpg" alt="<?php echo $produit->image; ?>">
-		<div class="card_corps">
-			<h4 class="card-title"><?php echo $produit->designation; ?></h4>
-
-				<p class="prix">Prix : <?php echo number_format($produit->pu, 2, ',', ' '); ?></p>
-				<p class="float-droit">Remise : <?php echo $produit->remise; ?>%</p>
-
-			<a href="addpanier.php?id=<?= $produit->id_produit; ?>" class="btn btn-primary">Ajouter au panier</a>
-		</div>
-	</div>
-<?php endforeach ?>
-
+<img src="../img/test.jpg" class="img-fluid" alt="Responsive image">
+<br><br>
+<h2>Présentation</h2>
+<p>Utque proeliorum periti rectores primo catervas densas opponunt et fortes, deinde leves armaturas, post iaculatores ultimasque subsidiales acies, si fors adegerit, iuvaturas, ita praepositis urbanae familiae suspensae digerentibus sollicite, quos insignes faciunt virgae dexteris aptatae velut tessera data castrensi iuxta vehiculi frontem omne textrinum incedit: huic atratum coquinae iungitur ministerium, dein totum promiscue servitium cum otiosis plebeiis de vicinitate coniunctis: postrema multitudo spadonum a senibus in pueros desinens, obluridi distortaque lineamentorum conpage deformes, ut quaqua incesserit quisquam cernens mutilorum hominum agmina detestetur memoriam Samiramidis reginae illius veteris, quae teneros mares castravit omnium prima velut vim iniectans naturae, eandemque ab instituto cursu retorquens, quae inter ipsa oriundi crepundia per primigenios seminis fontes tacita quodam modo lege vias propagandae posteritatis ostendit.</p>
 
 
 

@@ -76,6 +76,10 @@ div .table td, .table th {
   padding-left: 0;
 }
 
+.totalPanier {
+  margin-top: 40px;
+}
+
 /* BO */
 
 .sans-puce {

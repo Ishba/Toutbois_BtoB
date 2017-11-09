@@ -15,6 +15,17 @@
       if(isset($_GET['delPanier'])) {
         $this->del($_GET['delPanier']);
       }
+      if(isset($_POST['panier']['quantity'])) {
+        $this->recalc();
+      }
+    }
+
+    public function recalc() {
+      foreach ($_SESSION['panier'] as $produit_id => $quantity) {
+        if(isset($_POST['panier']['quantity'][$produit_id])){
+          $_SESSION['panier'][$produit_id] = $_POST['panier']['quantity'][$produit_id];
+        }
+      }
     }
 
     public function count() {
