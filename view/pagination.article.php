@@ -3,12 +3,12 @@
     <?php
       if($current != 1) { ?>
 
-        <li class="page-item">
+        <li class="page-item visible">
           <a class="page-link" href="?pg=<?= $current - 1; ?>" tabindex="-1">Précédent</a>
         </li>
 
       <?php } else { ?>
-        <li class="page-item disabled">
+        <li class="page-item disabled invisible">
           <a class="page-link" href="#" tabindex="-1">Précédent</a>
         </li>
       <?php }
@@ -27,12 +27,12 @@
     <?php
       if($current >= $nbPage) { ?>
 
-        <li class="page-item disabled">
+        <li class="page-item disabled invisible">
           <a class="page-link" href="#" tabindex="-1">Suivant</a>
         </li>
 
       <?php } else { ?>
-        <li class="page-item">
+        <li class="page-item visible">
           <a class="page-link" href="?pg=<?= $current + 1; ?>" tabindex="-1">Suivant</a>
         </li>
       <?php }
