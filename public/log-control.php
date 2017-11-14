@@ -29,7 +29,11 @@
     if(password_verify($log_password, $pass_client)) {
       echo 'Vous êtes connecté !';
       $_SESSION['auth'] = "Connect";
-      
+      $stmt2 = $DB->query("SELECT enseigne FROM client WHERE numClient = '$num_client'");
+      foreach ($stmt2 as $ens) {
+        $_SESSION['enseigne'] = $ens->enseigne;
+      }
+    
     } else {
       echo 'Votre mot de passe est incorrect !<br>';
     }

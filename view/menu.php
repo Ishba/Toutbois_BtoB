@@ -26,8 +26,9 @@
       <div class="col-md-3">
         <ul class="navbar-nav float-droit-menu">
           <?php if (isset($_SESSION['auth'])): ?>
+
             <li class="nav-item">
-              <a class="nav-link" href="logout.php">Déconnexion</a>
+              <a class="nav-link" href="logout.php"><?= $_SESSION['enseigne']; ?> Déconnexion</a>
             </li>
           <?php else: ?>
           <li class="nav-item">
