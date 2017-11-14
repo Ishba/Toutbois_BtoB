@@ -4,7 +4,7 @@ function xmlhttpPost(strURL) {
 	// on le met à false pour vérifier qu'il n'existe en mémoire aucune instance d'objet portant le même nom
     var self = this;
     // Mozilla/Safari
-    alert ("toto");
+    //alert ("toto");
     if (window.XMLHttpRequest) {
         self.xmlHttpReq = new XMLHttpRequest();
     }
@@ -46,5 +46,5 @@ function updatepage(str){
     document.getElementById("resultat").innerHTML = str;
     document.getElementById("resultat2").style.display="none";
   }
-
+  //alert ("ta mere");
 }

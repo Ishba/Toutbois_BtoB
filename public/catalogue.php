@@ -10,7 +10,6 @@
 
 <?php $produits = $DB->query('SELECT * FROM produit ORDER BY id_produit LIMIT '.$firstArtPage.', '.$perpage); ?>
 
-<?php require('../view/pagination.article.php'); ?>
 
 
 <?php foreach ($produits as $produit): ?>

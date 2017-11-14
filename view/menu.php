@@ -25,9 +25,15 @@
       </div>
       <div class="col-md-3">
         <ul class="navbar-nav float-droit-menu">
+          <?php if (isset($_SESSION['auth'])): ?>
+            <li class="nav-item">
+              <a class="nav-link" href="logout.php">Déconnexion</a>
+            </li>
+          <?php else: ?>
           <li class="nav-item">
             <a class="nav-link" href="connexion-client.php">Connexion</a>
           </li>
+        <?php endif; ?>
         </ul>
       </div>
     </div>

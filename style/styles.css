@@ -3,10 +3,12 @@ body {
 }
 
 #resultat {
+  margin-top: 20px;
   display: none;
 }
 
 #resultat2 {
+  margin-top: 20px;
   display: none;
 }
 
