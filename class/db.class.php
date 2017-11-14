@@ -4,7 +4,7 @@
     private $host = 'localhost';
     private $username = 'root';
     private $password = '';
-    private $database = 'toutbois_btob';
+    private $database = 'toutbois';
     private $db;
 
 
@@ -41,8 +41,15 @@
     	return $req->fetchColumn();
     }
 
+    public function connect($sql) {
+      $req = $this->db->prepare($sql);
+    	$req->execute();
+      return $req->fetchAll(PDO::FETCH_OBJ);
+    }
+
   }
+/*
+$app = new Database('toubois');
 
-
-
- ?>
+$req = app->connect('')
+ ?>*/
