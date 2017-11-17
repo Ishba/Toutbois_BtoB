@@ -1,7 +1,7 @@
 <?php
 	require_once('../view/haut.php');
 	require_once('../view/menu.php');
-  require('../class/pagination.class.php');
+
 ?>
 <script type="text/javascript" src="../js/ajax.js"></script>
 <script>
