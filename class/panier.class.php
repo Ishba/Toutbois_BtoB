@@ -18,6 +18,9 @@
       if(isset($_POST['panier']['quantity'])) {
         $this->recalc();
       }
+    /*  if(isset($_GET['addcommande'])) {
+        $this->addcommande($_GET['addcommande']);
+      }*/
     }
 
     public function recalc() {
@@ -53,6 +56,22 @@
     public function del($produit_id){
       unset($_SESSION['panier'][$produit_id]);
     }
+
+    /*public function addcommande($num_client) {
+      if(!isset($_SESSION['enseigne'])) {
+        // CODER POUR AFFICHER MESSAGE D ERREUR
+        return $test;
+      } else {
+        $datenow = new DateTime(date("Y-m-d"));
+        foreach ($produits as $produit) {
+          $DB->query('INSERT INTO entete_commande (date_com, id_user) VALUES ('.$datenow->format("Y-m-d").', '.$_SESSION['id'].')');
+
+          echo 'produit ajouté<br>';
+          echo $_SESSION['id'];
+        }
+
+      }
+    }*/
 
   }
 

@@ -44,11 +44,20 @@
 	  </tbody>
 	</table>
 	<div class="totalPanier">
-		<p><input type="submit" class="btn btn-secondary" value="recalculer"><strong>&nbsp;&nbsp; Total TTC : <?= number_format($panier->total(),2,',',' '); ?> €</strong><span class="float-droit"><a href="#" class="btn btn-primary">Finaliser ma commande</a></span></p>
+		<p><input type="submit" class="btn btn-secondary" value="recalculer"><strong>&nbsp;&nbsp; Total TTC : <?= number_format($panier->total(),2,',',' '); ?> €</strong><span class="float-droit"><a href="panier.php?addcommande" class="btn btn-primary">Finaliser ma commande</a></span></p>
 	</div>
 </form>
 
+
+
 <?php
+//TEST
+	/*var_dump($_SESSION['panier']);
+	$datenow = new DateTime(date("Y-m-d"));
+	echo $datenow->format("Y-m-d H:i:s");
+	echo $datenow->format("Y-m-d");*/
+
+
 	require_once('../view/bas.php');
 
 ?>
