@@ -32,8 +32,9 @@
       $stmt2 = $DB->query("SELECT enseigne FROM client WHERE numClient = '$num_client'");
       foreach ($stmt2 as $ens) {
         $_SESSION['enseigne'] = $ens->enseigne;
+        $_SESSION['id'] = $num_client;
       }
-    
+
     } else {
       echo 'Votre mot de passe est incorrect !<br>';
     }
