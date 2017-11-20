@@ -6,152 +6,80 @@
 
 <h2>Mes commandes</h2>
 
+<?php $commandes = $DB->query('SELECT * FROM entete_commande WHERE idUser = '.$_SESSION['id']); ?>
+
+<?php
+	$nbCollapse = 0;
+	foreach ($commandes as $commande) {
+		$numCde = $commande->id_com;
+		$dateCde = $commande->date_com;
+		$idUser = $commande->idUser;
+		$statut = $commande->statut_cde;
+		$prixTotalTTC = 0;
+		$nbCollapse += 1;
+
+		$produits = $DB->query('SELECT * FROM ligne_commande WHERE id_com = '.$numCde);
+?>
 <div id="accordion" role="tablist">
   <div class="card_cde">
-    <div class="card-header" role="tab" id="headingOne">
+    <div class="card-header" role="tab" id="heading<?= $nbCollapse; ?>">
       <h5 class="mb-0">
-        <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Commande 47852 (05/12/2016)
+        <a data-toggle="collapse" href="#collapse<?= $nbCollapse; ?>" aria-expanded="true" aria-controls="collapse<?= $nbCollapse; ?>">
+          Commande n° <?= $numCde; ?> (<?= $dateCde; ?>)
         </a>
+				<span class="float-right"><?= $statut; ?></span>
       </h5>
     </div>
+		<div id="collapse<?= $nbCollapse; ?>" class="collapse" role="tabpanel" aria-labelledby="heading<?= $nbCollapse; ?>" data-parent="#accordion">
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Photo</th>
+							<th scope="col">Référence produit</th>
+							<th scope="col">Quantité</th>
+							<th scope="col">Prix TTC</th>
+						</tr>
+					</thead>
+					<tbody>
+<?php
+		foreach ($produits as $produit) {
+			$quantite = $produit->qte;
+			$idProduit = $produit->id_produit;
+			$produitDetail = $DB->query("SELECT * FROM produit WHERE id_produit = ".$idProduit);
+			foreach ($produitDetail as $pdtDetail) {
+				$designation = $pdtDetail->designation;
+				$image = $pdtDetail->image;
+				$prixUnitaire = $pdtDetail->pu;
+				$prixTTC = $prixUnitaire * 1.196;
+				$prixTotalTTC += $prixTTC*$quantite;
+			}
+			?>
 
-    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Photo</th>
-              <th scope="col">Référence produit</th>
-              <th scope="col">Quantité</th>
-              <th scope="col">Prix</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><img src="../img/test-pdt-mini.jpg" alt="..."></td>
-              <td>Nom du produit</td>
-              <td>2</td>
-              <td>400,00 €</td>
-            </tr>
-            <tr>
-              <td><img src="../img/test-pdt-mini.jpg" alt="..."></td>
-              <td>Nom du produit</td>
-              <td>2</td>
-              <td>400,00 €</td>
-            </tr>
-            <tr>
-              <td><img src="../img/test-pdt-mini.jpg" alt="..."></td>
-              <td>Nom du produit</td>
-              <td>2</td>
-              <td>400,00 €</td>
-            </tr>
-          </tbody>
-        </table>
-        <p><strong>Total : 1600,00 €</strong><span class="float-droit"><a href="#">imprimer la facture</a></span></p>
+				<tr>
+					<td><img src="../img/<?= $image; ?>-mini.jpg" alt="..."></td>
+					<td><?= $designation; ?></td>
+					<td><?= $quantite; ?></td>
+					<td><?php echo number_format($prixTTC*$quantite, 2, ',', ' '); ?> €</td>
+				</tr>
 
-      </div>
-    </div>
-  </div>
+			<?php
+		}?>
 
-  <div id="accordion" role="tablist">
-    <div class="card_cde">
-      <div class="card-header" role="tab" id="headingTwo">
-        <h5 class="mb-0">
-          <a data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            Commande 47852 (05/12/2016)
-          </a>
-        </h5>
-      </div>
+			</tbody>
+		</table>
+		<p><strong>Total : <?php echo number_format($prixTotalTTC, 2, ',', ' '); ?> €</strong><!--<span class="float-droit"><a href="#">imprimer la facture</a></span>--></p>
 
-      <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-        <div class="card-body">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Photo</th>
-                <th scope="col">Référence produit</th>
-                <th scope="col">Quantité</th>
-                <th scope="col">Prix</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><img src="../img/test-pdt-mini.jpg" alt="..."></td>
-                <td>Nom du produit</td>
-                <td>2</td>
-                <td>400,00 €</td>
-              </tr>
-              <tr>
-                <td><img src="../img/test-pdt-mini.jpg" alt="..."></td>
-                <td>Nom du produit</td>
-                <td>2</td>
-                <td>400,00 €</td>
-              </tr>
-              <tr>
-                <td><img src="../img/test-pdt-mini.jpg" alt="..."></td>
-                <td>Nom du produit</td>
-                <td>2</td>
-                <td>400,00 €</td>
-              </tr>
-            </tbody>
-          </table>
-          <p><strong>Total : 1600,00 €</strong><span class="float-droit"><a href="#">imprimer la facture</a></span></p>
+		</div>
+	</div>
+</div>
 
-        </div>
-      </div>
-    </div>
-
-    <div id="accordion" role="tablist">
-      <div class="card_cde">
-        <div class="card-header" role="tab" id="headingThree">
-          <h5 class="mb-0">
-            <a data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-              Commande 47852 (05/12/2016)
-            </a>
-          </h5>
-        </div>
-
-        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-          <div class="card-body">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Photo</th>
-                  <th scope="col">Référence produit</th>
-                  <th scope="col">Quantité</th>
-                  <th scope="col">Prix</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><img src="../img/test-pdt-mini.jpg" alt="..."></td>
-                  <td>Nom du produit</td>
-                  <td>2</td>
-                  <td>400,00 €</td>
-                </tr>
-                <tr>
-                  <td><img src="../img/test-pdt-mini.jpg" alt="..."></td>
-                  <td>Nom du produit</td>
-                  <td>2</td>
-                  <td>400,00 €</td>
-                </tr>
-                <tr>
-                  <td><img src="../img/test-pdt-mini.jpg" alt="..."></td>
-                  <td>Nom du produit</td>
-                  <td>2</td>
-                  <td>400,00 €</td>
-                </tr>
-              </tbody>
-            </table>
-            <p><strong>Total : 1600,00 €</strong><span class="float-droit"><a href="#">imprimer la facture</a></span></p>
-
-          </div>
-        </div>
-      </div>
+	<?php
+	}
+ ?>
 
 
-      <?php
-      	require_once('../view/bas.php');
+  <?php
+  	require_once('../view/bas.php');
 
-      ?>
+  ?>
