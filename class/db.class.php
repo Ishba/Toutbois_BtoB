@@ -35,6 +35,17 @@
     	return $req->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function query2($sql) {
+      $req = $this->db->prepare($sql);
+    	$req->execute();
+    }
+
+    public function query3($sql) {
+      $req = $this->db->prepare($sql);
+    	$req->execute();
+      return $req;
+    }
+
     public function nbArticle($sql) {
       $req = $this->db->prepare($sql);
     	$req->execute();
