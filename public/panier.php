@@ -49,35 +49,9 @@
 </form>
 
 
-<?php
 
-	if(isset($_GET['addcommande'])) {
-		addcommande($_GET['addcommande']);
-	}
-
-	function addcommande() {
-		if(!isset($_SESSION['enseigne'])) {
-			// CODER POUR AFFICHER MESSAGE D ERREUR
-			?><div class="alert alert-danger" role="alert">Il faut vous connecter pour poursuivre votre commande !</div><?php
-		} else {
-			$DB2 = new DB();
-			$DB2->query2('INSERT INTO entete_commande (date_com, idUser) VALUES (NOW(), '.$_SESSION["id"].')');
-
-
-			$idCde = $DB2->query('SELECT id_com FROM entete_commande ORDER BY id_com DESC LIMIT 1');
-
-
-			$cdelines = $_SESSION['panier'];
-			foreach ($cdelines as $cdelineid => $lineqte) {
-
-				$DB2->query2('INSERT INTO ligne_commande (qte, id_com, id_produit) VALUES ('.$lineqte.', '.$idCde[0]->id_com.', '.$cdelineid.')');
-
-			}
-			?><div class="alert alert-success" role="alert">Votre commande est enregistrée<br>Numéro de commande : <?= $idCde[0]->id_com; ?></div><?php
-		}
-	}
-
-
+	<?php
+	require('addcommande.php');
 	require_once('../view/bas.php');
 
 ?>
