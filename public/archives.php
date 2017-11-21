@@ -6,8 +6,17 @@
 
 <h2>Mes commandes</h2>
 
-<?php $commandes = $DB->query('SELECT * FROM entete_commande WHERE idUser = '.$_SESSION['id']); ?>
 
+<?php
+	if(empty($_SESSION['auth'])){
+		?>
+		<p>Vous devez vous <a href="connexion-client.php">connecter</a> pour visualiser l'historique de vos commandes.</p>
+		<?php
+	} else {
+
+
+ ?>
+ <?php $commandes = $DB->query('SELECT * FROM entete_commande WHERE idUser = '.$_SESSION['id']); ?>
 <?php
 	$nbCollapse = 0;
 	foreach ($commandes as $commande) {
@@ -75,6 +84,8 @@
 </div>
 
 	<?php
+	}
+
 	}
  ?>
 
