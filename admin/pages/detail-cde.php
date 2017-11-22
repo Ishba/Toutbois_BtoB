@@ -66,9 +66,10 @@
   </tbody>
 </table>
 
-<?= $commande->getButtonBar($numCde); ?>
 
 <?php
+
+  echo $commande->getButtonBar($numCde);
 
   if(isset($_GET['action'])){
     action($_GET['action']);
