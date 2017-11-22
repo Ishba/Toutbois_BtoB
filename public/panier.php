@@ -32,7 +32,7 @@
 	      <td><?php echo $produit->designation; ?></td>
 	      <td>
 	        <div class="form-group col-md-8 select-qte">
-	          <span class="row"><input type="number" class="quantity" name="panier[quantity][<?= $produit->id_produit; ?>]" value="<?= $_SESSION['panier'][$produit->id_produit] ?> min="1" max="<?= $produit->qte_stock; ?>"> </span>
+	          <span class="row"><input type="number" class="quantity" name="panier[quantity][<?= $produit->id_produit; ?>]" value="<?= $_SESSION['panier'][$produit->id_produit] ?>" min="1" max="<?= $produit->qte_stock; ?>"> </span>
 	        </div>
 	      </td>
 	      <td><?php echo number_format($produit->pu * $_SESSION['panier'][$produit->id_produit], 2, ',', ' '); ?> €</td>

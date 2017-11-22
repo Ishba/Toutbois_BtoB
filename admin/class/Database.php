@@ -33,6 +33,12 @@ class Database {
     return $req->fetchAll(PDO::FETCH_CLASS, $class_name);
   }
 
+  public function query2($sql) {
+    $req = $this->getPDO()->prepare($sql);
+    $req->execute();
+    return $req->fetchAll(PDO::FETCH_OBJ);
+  }
+
 }
 
 

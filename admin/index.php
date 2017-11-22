@@ -18,6 +18,8 @@ if($p === 'login') {
   require 'pages/login.php';
 } elseif($p === 'commandes') {
   require 'pages/commandes.php';
+} elseif($p === 'detail-cde') {
+  require 'pages/detail-cde.php';
 }
 
 $content = ob_get_clean();
