@@ -1,8 +1,4 @@
-<?php
-$db = new Database();
-$data = $db->query('SELECT * FROM produit');
-var_dump($data);
- ?>
+
 
 <h2>Liste des commandes</h2>
 
@@ -32,40 +28,22 @@ var_dump($data);
         <tr>
           <th scope="col">Numéro commande</th>
           <th scope="col">Date de commande</th>
-          <th scope="col">E-mail client</th>
           <th scope="col">Numéro client</th>
           <th scope="col">Statut</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row"><a href="#">842</a></th>
-          <td>28/12/2016</td>
-          <td>contact@leroymerlin.fr</td>
-          <td>879564</td>
-          <td>En cours</td>
-        </tr>
-        <tr class="table-success">
-          <th scope="row"><a href="#">725</a></th>
-          <td>28/12/2016</td>
-          <td>contact@leroymerlin.fr</td>
-          <td>879564</td>
-          <td>Validée</td>
-        </tr>
-        <tr class="table-primary">
-          <th scope="row"><a href="#">852</a></th>
-          <td>28/12/2016</td>
-          <td>contact@leroymerlin.fr</td>
-          <td>879564</td>
-          <td>Facturée</td>
-        </tr>
-        <tr class="table-danger">
-          <th scope="row"><a href="#">369</a></th>
-          <td>28/12/2016</td>
-          <td>contact@leroymerlin.fr</td>
-          <td>879564</td>
-          <td>Annulée</td>
-        </tr>
+
+          <?php
+            foreach ($db->query('SELECT * FROM entete_commande ORDER BY id_com DESC', 'Order') as $commande): ?>
+              <tr<?= $commande->getColorLine(); ?>>
+                <th scope="row"><a href="#"><?= $commande->getNumCde(); ?></a></th>
+                <td><?= $commande->getDateCde(); ?></td>
+                <td><?= $commande->getNumClient(); ?></td>
+                <td><?= $commande->getStatut(); ?></td>
+              </tr>
+          <?php endforeach; ?>
+
       </tbody>
     </table>
   </div>
@@ -76,19 +54,22 @@ var_dump($data);
         <tr>
           <th scope="col">Numéro commande</th>
           <th scope="col">Date de commande</th>
-          <th scope="col">E-mail client</th>
           <th scope="col">Numéro client</th>
           <th scope="col">Statut</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row"><a href="#">842</a></th>
-          <td>28/12/2016</td>
-          <td>contact@leroymerlin.fr</td>
-          <td>879564</td>
-          <td>En cours</td>
-        </tr>
+
+        <?php
+          foreach ($db->query('SELECT * FROM entete_commande WHERE statut_cde = "En cours" ORDER BY id_com DESC', 'Order') as $commande): ?>
+            <tr<?= $commande->getColorLine(); ?>>
+              <th scope="row"><a href="#"><?= $commande->getNumCde(); ?></a></th>
+              <td><?= $commande->getDateCde(); ?></td>
+              <td><?= $commande->getNumClient(); ?></td>
+              <td><?= $commande->getStatut(); ?></td>
+            </tr>
+        <?php endforeach; ?>
+
       </tbody>
     </table>
   </div>
@@ -100,19 +81,22 @@ var_dump($data);
         <tr>
           <th scope="col">Numéro commande</th>
           <th scope="col">Date de commande</th>
-          <th scope="col">E-mail client</th>
           <th scope="col">Numéro client</th>
           <th scope="col">Statut</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="table-success">
-          <th scope="row"><a href="#">725</a></th>
-          <td>28/12/2016</td>
-          <td>contact@leroymerlin.fr</td>
-          <td>879564</td>
-          <td>Validée</td>
-        </tr>
+
+        <?php
+          foreach ($db->query('SELECT * FROM entete_commande WHERE statut_cde = "Validée" ORDER BY id_com DESC', 'Order') as $commande): ?>
+            <tr<?= $commande->getColorLine(); ?>>
+              <th scope="row"><a href="#"><?= $commande->getNumCde(); ?></a></th>
+              <td><?= $commande->getDateCde(); ?></td>
+              <td><?= $commande->getNumClient(); ?></td>
+              <td><?= $commande->getStatut(); ?></td>
+            </tr>
+        <?php endforeach; ?>
+
       </tbody>
     </table>
   </div>
@@ -124,19 +108,22 @@ var_dump($data);
         <tr>
           <th scope="col">Numéro commande</th>
           <th scope="col">Date de commande</th>
-          <th scope="col">E-mail client</th>
           <th scope="col">Numéro client</th>
           <th scope="col">Statut</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="table-primary">
-          <th scope="row"><a href="#">852</a></th>
-          <td>28/12/2016</td>
-          <td>contact@leroymerlin.fr</td>
-          <td>879564</td>
-          <td>Facturée</td>
-        </tr>
+
+        <?php
+          foreach ($db->query('SELECT * FROM entete_commande WHERE statut_cde = "Facturée" ORDER BY id_com DESC', 'Order') as $commande): ?>
+            <tr<?= $commande->getColorLine(); ?>>
+              <th scope="row"><a href="#"><?= $commande->getNumCde(); ?></a></th>
+              <td><?= $commande->getDateCde(); ?></td>
+              <td><?= $commande->getNumClient(); ?></td>
+              <td><?= $commande->getStatut(); ?></td>
+            </tr>
+        <?php endforeach; ?>
+
       </tbody>
     </table>
   </div>
@@ -148,19 +135,22 @@ var_dump($data);
         <tr>
           <th scope="col">Numéro commande</th>
           <th scope="col">Date de commande</th>
-          <th scope="col">E-mail client</th>
           <th scope="col">Numéro client</th>
           <th scope="col">Statut</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="table-danger">
-          <th scope="row"><a href="#">369</a></th>
-          <td>28/12/2016</td>
-          <td>contact@leroymerlin.fr</td>
-          <td>879564</td>
-          <td>Annulée</td>
-        </tr>
+
+        <?php
+          foreach ($db->query('SELECT * FROM entete_commande WHERE statut_cde = "Annulée" ORDER BY id_com DESC', 'Order') as $commande): ?>
+            <tr<?= $commande->getColorLine(); ?>>
+              <th scope="row"><a href="#"><?= $commande->getNumCde(); ?></a></th>
+              <td><?= $commande->getDateCde(); ?></td>
+              <td><?= $commande->getNumClient(); ?></td>
+              <td><?= $commande->getStatut(); ?></td>
+            </tr>
+        <?php endforeach; ?>
+
       </tbody>
     </table>
   </div>
