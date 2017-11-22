@@ -24,13 +24,13 @@ class Database {
         PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
         $this->pdo = $pdo;
     }
-      return $this->pdo;
+    return $this->pdo;
   }
 
-  public function query($sql) {
+  public function query($sql, $class_name) {
     $req = $this->getPDO()->prepare($sql);
     $req->execute();
-    return $req->fetchAll(PDO::FETCH_OBJ);
+    return $req->fetchAll(PDO::FETCH_CLASS, $class_name);
   }
 
 }

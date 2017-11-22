@@ -10,6 +10,8 @@ if(isset($_GET['p'])) {
   $p = 'login';
 }
 
+// Initialisation des objets
+$db = new Database();
 
 ob_start();
 if($p === 'login') {
