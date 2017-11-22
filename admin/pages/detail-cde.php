@@ -66,10 +66,41 @@
   </tbody>
 </table>
 
+<?= $commande->getButtonBar($numCde); ?>
 
-<div class="bouton-groupe float-droit col-md-12">
-  <button type="button" class="btn btn-outline-secondary col-md-2">En cours</button>
-  <button type="button" class="btn btn-outline-success col-md-2">Valider</button>
-  <button type="button" class="btn btn-outline-primary col-md-2">Facturer</button>
-  <button type="button" class="btn btn-outline-danger col-md-2">Annuler</button>
-</div>
+<?php
+
+  if(isset($_GET['action'])){
+    action($_GET['action']);
+  }
+
+  function action() {
+    $db2 = new Database();
+    $numCde = $_GET['commande'];
+
+    switch ($_GET['action']) {
+      case 'encours':
+        $action = 'En cours';
+        break;
+
+      case 'valider':
+        $action = 'Validée';
+        break;
+
+      case 'facturer':
+        $action = 'Facturée';
+        break;
+
+      case 'annuler':
+        $action = 'Annulée';
+        break;
+
+      default:
+        $action = 'En cours';
+        break;
+    }
+    $db2->query3("UPDATE entete_commande SET statut_cde = '$action' WHERE id_com = $numCde");
+    header('Location:index.php?p=detail-cde&commande='.$numCde);
+  }
+
+ ?>
