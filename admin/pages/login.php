@@ -1,48 +1,6 @@
-<?php
-
-require 'class/Autoloader.php';
-
-Autoloader::register();
-
-if(isset($_GET['p'])) {
-  $p = $_GET['p'];
-} else {
-  $p = 'login';
-}
 
 
-ob_start();
-if($p === 'login') {
-  require 'pages/login.php';
-} elseif($p === 'commandes') {
-  require 'pages/commandes.php';
-}
-
-$content = ob_get_clean();
-require 'pages/template/default.php'
-
-?>
-
-
-<!--
-<html>
-  <head>
-    <title>Login</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../style/bootstrap.min.css">
-    <link rel="stylesheet" href="../style/styles.css">
-    <script type="text/javascript" src="../js/ajax.js"></script>
-    <script>
-  		function myfunc(strURL) {
-  			alert ("ici");
-  			xmlhttpPost(strURL);
-  			alert ("ici2");
-  			return false;
-  		}
-		</script>
-  </head>
-  <body>
-    <div class="container">
+      <h2>Connexion Back Office</h2>
 
       <div class="row justify-content-md-center">
         <form name="loginform" class="col-md-6" method="post">
@@ -60,7 +18,6 @@ require 'pages/template/default.php'
       </div>
       <div class="alert alert-success" role="alert" id="resultat2"></div>
       <div class="alert alert-danger" role="alert" id="resultat"></div>
-    </div>
-  </body>
-</html>
--->
+
+
+      
