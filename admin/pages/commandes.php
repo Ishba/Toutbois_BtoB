@@ -37,7 +37,7 @@
           <?php
             foreach ($db->query('SELECT * FROM entete_commande ORDER BY id_com DESC', 'Order') as $commande): ?>
               <tr<?= $commande->getColorLine(); ?>>
-                <th scope="row"><a href="#"><?= $commande->getNumCde(); ?></a></th>
+                <th scope="row"><a href="index.php?p=detail-cde<?= '&commande='.$commande->getNumCde(); ?>"><?= $commande->getNumCde(); ?></a></th>
                 <td><?= $commande->getDateCde(); ?></td>
                 <td><?= $commande->getNumClient(); ?></td>
                 <td><?= $commande->getStatut(); ?></td>
@@ -63,7 +63,7 @@
         <?php
           foreach ($db->query('SELECT * FROM entete_commande WHERE statut_cde = "En cours" ORDER BY id_com DESC', 'Order') as $commande): ?>
             <tr<?= $commande->getColorLine(); ?>>
-              <th scope="row"><a href="#"><?= $commande->getNumCde(); ?></a></th>
+              <th scope="row"><a href="index.php?p=detail-cde<?= '&commande='.$commande->getNumCde(); ?>"><?= $commande->getNumCde(); ?></a></th>
               <td><?= $commande->getDateCde(); ?></td>
               <td><?= $commande->getNumClient(); ?></td>
               <td><?= $commande->getStatut(); ?></td>
@@ -90,7 +90,7 @@
         <?php
           foreach ($db->query('SELECT * FROM entete_commande WHERE statut_cde = "Validée" ORDER BY id_com DESC', 'Order') as $commande): ?>
             <tr<?= $commande->getColorLine(); ?>>
-              <th scope="row"><a href="#"><?= $commande->getNumCde(); ?></a></th>
+              <th scope="row"><a href="index.php?p=detail-cde<?= '&commande='.$commande->getNumCde(); ?>"><?= $commande->getNumCde(); ?></a></th>
               <td><?= $commande->getDateCde(); ?></td>
               <td><?= $commande->getNumClient(); ?></td>
               <td><?= $commande->getStatut(); ?></td>
@@ -117,7 +117,7 @@
         <?php
           foreach ($db->query('SELECT * FROM entete_commande WHERE statut_cde = "Facturée" ORDER BY id_com DESC', 'Order') as $commande): ?>
             <tr<?= $commande->getColorLine(); ?>>
-              <th scope="row"><a href="#"><?= $commande->getNumCde(); ?></a></th>
+              <th scope="row"><a href="index.php?p=detail-cde<?= '&commande='.$commande->getNumCde(); ?>"><?= $commande->getNumCde(); ?></a></th>
               <td><?= $commande->getDateCde(); ?></td>
               <td><?= $commande->getNumClient(); ?></td>
               <td><?= $commande->getStatut(); ?></td>
@@ -144,7 +144,7 @@
         <?php
           foreach ($db->query('SELECT * FROM entete_commande WHERE statut_cde = "Annulée" ORDER BY id_com DESC', 'Order') as $commande): ?>
             <tr<?= $commande->getColorLine(); ?>>
-              <th scope="row"><a href="#"><?= $commande->getNumCde(); ?></a></th>
+              <th scope="row"><a href="index.php?p=detail-cde<?= '&commande='.$commande->getNumCde(); ?>"><?= $commande->getNumCde(); ?></a></th>
               <td><?= $commande->getDateCde(); ?></td>
               <td><?= $commande->getNumClient(); ?></td>
               <td><?= $commande->getStatut(); ?></td>
