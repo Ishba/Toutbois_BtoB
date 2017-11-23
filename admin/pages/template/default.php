@@ -21,7 +21,7 @@
                 <a class="nav-link" href="index.php?p=commandes">Suivi commandes<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="liste-articles.php">Gestion des articles</a>
+                <a class="nav-link" href="index.php?p=liste-articles">Gestion des articles</a>
               </li>
             </ul>
           </div>
