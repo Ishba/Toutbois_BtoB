@@ -2,7 +2,7 @@
 
 <h2 class="col-md-9">Liste des articles</h2>
 
-<button type="button" class="btn btn-primary col-md-3 float-right margin-bas">Ajouter un nouvel article</button>
+<a href="index.php?p=nouvel-article" type="button" class="btn btn-primary col-md-3 float-right margin-bas">Ajouter un nouvel article</a>
 
 <table class="table table-hover">
   <thead>
