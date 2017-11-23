@@ -44,6 +44,12 @@ class Database {
     $req->execute();
   }
 
+  public function nbArticle($sql) {
+    $req = $this->getPDO()->prepare($sql);
+    $req->execute();
+    return $req->fetchColumn();
+  }
+
 }
 
 
