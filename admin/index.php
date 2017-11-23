@@ -22,6 +22,10 @@ if($p === 'login') {
   require 'pages/detail-cde.php';
 } elseif($p === 'liste-articles') {
   require 'pages/liste-articles.php';
+} elseif($p === 'nouvel-article') {
+  require 'pages/nouvel-article.php';
+} elseif($p === 'validation-article') {
+  require 'pages/validation-article.php';
 }
 
 $content = ob_get_clean();
