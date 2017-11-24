@@ -11,7 +11,7 @@
       <input type="prixPdt" class="form-control" id="inputPrixPdt" name="inputPrixPdt" placeholder="Prix">
     </div>
     <div class="form-group col-md-4">
-      <label for="inputEmail4">remise</label>
+      <label for="inputEmail4">Remise</label>
       <input type="remisePdt" class="form-control" id="inputRemisePdt" name="inputRemisePdt" placeholder="Remise">
     </div>
     <div class="form-group col-md-4">
@@ -22,7 +22,14 @@
       <label class="custom-file">
         <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
         <input type="file" id="imagePdt" name="imagePdt" class="custom-file-input">
-        <span class="custom-file-control">Charger une photo...</span>
+        <span class="custom-file-control">Charger une photo (318 x 318)...</span>
+      </label>
+    </div>
+    <div class="form-group col-md-12">
+      <label class="custom-file">
+        <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+        <input type="file" id="imagePdtMini" name="imagePdtMini" class="custom-file-input">
+        <span class="custom-file-control">Charger miniature (40 x 40)...</span>
       </label>
     </div>
     <div class="bouton-groupe float-droit col-md-12">
@@ -35,14 +42,8 @@
 
 <?php
 
-	if(isset($_POST) && !empty($_POST) && isset($_FILES['imagePdt']) && !empty($_FILES['imagePdt'])) {
-    $designation = htmlspecialchars($_POST['inputNomPdt']);
-    $prixUnit = htmlspecialchars($_POST['inputPrixPdt']);
-    $remise = htmlspecialchars($_POST['inputRemisePdt']);
-    $stock = htmlspecialchars($_POST['inputStockPdt']);
-    $prixUnit = str_replace(',', '.', $prixUnit);
-    $nomImage = str_replace(' ', '_', $designation);
-    $nomImage = str_replace(array(
+  function supprAccents($chaine) {
+    $chaine = str_replace(array(
 								'à', 'â', 'ä', 'á', 'ã', 'å',
 								'î', 'ï', 'ì', 'í',
 								'ô', 'ö', 'ò', 'ó', 'õ', 'ø',
@@ -57,8 +58,8 @@
 								'u', 'u', 'u', 'u',
 								'e', 'e', 'e', 'e',
 								'c', 'y', 'n', 'y',
-							), $nomImage);
-    $nomImage = str_replace(array(
+							), $chaine);
+    $chaine = str_replace(array(
 								'À', 'Â', 'Ä', 'Á', 'Ã', 'Å',
 								'Î', 'Ï', 'Ì', 'Í',
 								'Ô', 'Ö', 'Ò', 'Ó', 'Õ', 'Ø',
@@ -73,18 +74,35 @@
 								'U', 'U', 'U', 'U',
 								'E', 'E', 'E', 'E',
 								'C', 'Y', 'N', 'Y',
-							), $nomImage);
-    $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+							), $chaine);
+    return $chaine;
+  }
+
+	if(isset($_POST) && !empty($_POST) && isset($_FILES['imagePdt']) && !empty($_FILES['imagePdt']) && isset($_FILES['imagePdtMini']) && !empty($_FILES['imagePdtMini'])) {
+    $designation = htmlspecialchars($_POST['inputNomPdt']);
+    $prixUnit = htmlspecialchars($_POST['inputPrixPdt']);
+    $remise = htmlspecialchars($_POST['inputRemisePdt']);
+    $stock = htmlspecialchars($_POST['inputStockPdt']);
+    $prixUnit = str_replace(',', '.', $prixUnit);
+    $nomImage = str_replace(' ', '_', $designation);
+    $nomImage = supprAccents($nomImage);
+    $extensions = array('.jpg', '.jpeg');
     $extension = strrchr($_FILES['imagePdt']['name'], '.');
     $taille_maxi = 1000000;
     $taille = filesize($_FILES['imagePdt']['tmp_name']);
+    $nomImageMini = str_replace(' ', '_', $designation);
+    $nomImageMini = supprAccents($nomImageMini);
+    $extensions2 = array('.jpg', '.jpeg');
+    $extension2 = strrchr($_FILES['imagePdtMini']['name'], '.');
+    $taille_maxi2 = 100000;
+    $taille2 = filesize($_FILES['imagePdtMini']['tmp_name']);
 
-		addarticle($designation, $nomImage, $prixUnit, $remise, $stock, $_FILES['imagePdt'], $extensions, $extension, $taille_maxi, $taille);
+		addarticle($designation, $nomImage, $nomImageMini, $prixUnit, $remise, $stock, $_FILES['imagePdt'], $_FILES['imagePdtMini'], $extensions, $extension, $taille_maxi, $taille);
 	}
 
 	function addarticle() {
 
-    if(isset($_POST) && !empty($_POST) && isset($_FILES['imagePdt']) && !empty($_FILES['imagePdt'])) {
+    if(isset($_POST) && !empty($_POST) && isset($_FILES['imagePdt']) && !empty($_FILES['imagePdt']) && isset($_FILES['imagePdtMini']) && !empty($_FILES['imagePdtMini'])) {
 
       $designation = htmlspecialchars($_POST['inputNomPdt']);
       $prixUnit = htmlspecialchars($_POST['inputPrixPdt']);
@@ -92,50 +110,33 @@
       $stock = htmlspecialchars($_POST['inputStockPdt']);
       $prixUnit = str_replace(',', '.', $prixUnit);
       $nomImage = str_replace(' ', '_', $designation);
-      $nomImage = str_replace(array(
-  								'à', 'â', 'ä', 'á', 'ã', 'å',
-  								'î', 'ï', 'ì', 'í',
-  								'ô', 'ö', 'ò', 'ó', 'õ', 'ø',
-  								'ù', 'û', 'ü', 'ú',
-  								'é', 'è', 'ê', 'ë',
-  								'ç', 'ÿ', 'ñ', 'ý',
-  							),
-  							array(
-  								'a', 'a', 'a', 'a', 'a', 'a',
-  								'i', 'i', 'i', 'i',
-  								'o', 'o', 'o', 'o', 'o', 'o',
-  								'u', 'u', 'u', 'u',
-  								'e', 'e', 'e', 'e',
-  								'c', 'y', 'n', 'y',
-  							), $nomImage);
-      $nomImage = str_replace(array(
-  								'À', 'Â', 'Ä', 'Á', 'Ã', 'Å',
-  								'Î', 'Ï', 'Ì', 'Í',
-  								'Ô', 'Ö', 'Ò', 'Ó', 'Õ', 'Ø',
-  								'Ù', 'Û', 'Ü', 'Ú',
-  								'É', 'È', 'Ê', 'Ë',
-  								'Ç', 'Ÿ', 'Ñ', 'Ý',
-  							),
-  							array(
-  								'A', 'A', 'A', 'A', 'A', 'A',
-  								'I', 'I', 'I', 'I',
-  								'O', 'O', 'O', 'O', 'O', 'O',
-  								'U', 'U', 'U', 'U',
-  								'E', 'E', 'E', 'E',
-  								'C', 'Y', 'N', 'Y',
-  							), $nomImage);
-      $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+      $nomImage = supprAccents($nomImage);
+      $extensions = array('.jpg', '.jpeg');
       $extension = strrchr($_FILES['imagePdt']['name'], '.');
       $taille_maxi = 1000000;
       $taille = filesize($_FILES['imagePdt']['tmp_name']);
+      $nomImageMini = str_replace(' ', '_', $designation);
+      $nomImageMini = supprAccents($nomImageMini);
+      $extensions2 = array('.jpg', '.jpeg');
+      $extension2 = strrchr($_FILES['imagePdtMini']['name'], '.');
+      $taille_maxi2 = 100000;
+      $taille2 = filesize($_FILES['imagePdtMini']['tmp_name']);
 
       if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
       {
-           $erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg, txt ou doc...';
+           $erreur = 'Vous devez uploader une photo produit de type jpg...';
       }
       if($taille>$taille_maxi)
       {
-           $erreur = 'Le fichier est trop gros...';
+           $erreur = 'La photo produit est trop lourde...';
+      }
+      if(!in_array($extension2, $extensions2)) //Si l'extension n'est pas dans le tableau
+      {
+           $erreur = 'Vous devez uploader une photo produit miniature de type jpg...';
+      }
+      if($taille2>$taille_maxi2)
+      {
+           $erreur = 'La photo produit miniature est trop lourde...';
       }
 
       if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
@@ -146,19 +147,33 @@
           $fichier = basename($nomImage.'.jpg');
           if(move_uploaded_file($_FILES['imagePdt']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
            {
-                echo 'Upload effectué avec succès !';
+                echo 'Upload photo effectué avec succès !<br>';
            }
            else //Sinon (la fonction renvoie FALSE).
            {
-                echo 'Echec de l\'upload !';
+                echo 'Echec de l\'upload photo !<br>';
            }
         } else {
-           $erreur = 'Il faut remplire tous les champs du formulaire !';
+           $erreur = 'Il faut uploader une photo produit !<br>';
+        }
+
+        if(isset($_FILES['imagePdtMini'])) {
+          $dossier = '../img/';
+          $fichier2 = basename($nomImage.'-mini.jpg');
+          if(move_uploaded_file($_FILES['imagePdtMini']['tmp_name'], $dossier . $fichier2)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+           {
+                echo 'Upload photo miniature effectué avec succès !<br>';
+           }
+           else //Sinon (la fonction renvoie FALSE).
+           {
+                echo 'Echec de l\'upload photo miniature !<br>';
+           }
+        } else {
+           $erreur = 'Il faut uploader une photo produit miniature !';
         }
 
     		$db2 = new Database();
     		$db2->query3("INSERT INTO produit (designation, image, pu, remise, qte_stock) VALUES ('$designation', '$nomImage', ".$prixUnit.", ".$remise.", ".$stock.")");
-
 
     		?><div class="alert alert-success" role="alert">Votre article est enregistrée !</div><?php
       }else {

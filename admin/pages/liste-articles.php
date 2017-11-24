@@ -25,9 +25,9 @@
           <td scope="row"><?= $article->getNumArt(); ?></td>
           <td><?= $article->getDesignationArt(); ?></td>
           <td><?= $article->getStockArt(); ?></td>
-          <td><?= $article->getPrixUnitArt(); ?> €</td>
+          <td><?= number_format($article->getPrixUnitArt(), 2, ',', ' '); ?> €</td>
           <td><?= $article->getRemiseArt(); ?>%</td>
-          <td><?= $article->getPrixUnitArt()*1.196; ?> €</td>
+          <td><?= number_format($article->getPrixUnitArt()*1.196, 2, ',', ' '); ?> €</td>
           <td><a href="index.php?p=detail-art<?= '&article='.$article->getNumArt(); ?>">Modifier</a></td>
         </tr>
     <?php endforeach; ?>
