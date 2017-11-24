@@ -26,6 +26,8 @@ if($p === 'login') {
   require 'pages/nouvel-article.php';
 } elseif($p === 'validation-article') {
   require 'pages/validation-article.php';
+} elseif($p === 'detail-art') {
+  require 'pages/detail-art.php';
 }
 
 $content = ob_get_clean();
