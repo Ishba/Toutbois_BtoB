@@ -59,8 +59,3 @@
     }
 
   }
-/*
-$app = new Database('toubois');
-
-$req = app->connect('')
- ?>*/

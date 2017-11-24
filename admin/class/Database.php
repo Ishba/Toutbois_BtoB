@@ -50,6 +50,26 @@ class Database {
     return $req->fetchColumn();
   }
 
+  public function logAdmin($statement, $attributes, $class_name, $one = false) {
+    $req = $this->getPDO()->prepare($statement);
+    $req->execute($attributes);
+
+    if($class_name === null){
+      $req->setFetchMode(PDO::FECTH_OBJ);
+    } else {
+      $req->setFetchMode(PDO::FECTH_CLASS, $class_name);
+    }
+
+    if($one) {
+      $data = $req->fetch();
+    } else {
+      $data = $req->fetchAll();
+    }
+
+    return $data;
+
+  }
+
 }
 
 

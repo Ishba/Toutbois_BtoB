@@ -1,5 +1,3 @@
-
-
 <h2>Liste des commandes</h2>
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
