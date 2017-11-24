@@ -27,5 +27,6 @@
 			}
 			?><div class="alert alert-success" role="alert">Votre commande est enregistrée<br>Numéro de commande : <?= $idCde[0]->id_com; ?></div><?php
 		}
+		unset($_SESSION['panier']);
 	}
 	?>
