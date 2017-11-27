@@ -34,6 +34,8 @@ if(isset($_SESSION['auth']) && $_SESSION['auth'] =='ADMIN') {
     require 'pages/detail-art.php';
   } elseif($p === 'logout') {
     require 'pages/logout-adm.php';
+  } elseif($p === 'delete-art') {
+    require 'pages/delete-art.php';
   }
 } else {
   require 'pages/login.php';

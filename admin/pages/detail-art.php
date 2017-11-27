@@ -54,6 +54,7 @@
       <img src="<?= $dossierImage.$imageMini; ?>">
     </div>
     <div class="bouton-groupe float-droit col-md-12">
+      <button onclick="goToSuppr();" type="button" class="btn btn-danger col-md-2">Supprimer</button>
       <button onclick="returnList();" type="button" class="btn btn-warning col-md-2">Annuler</button>
       <button type="submit" class="btn btn-success col-md-2">Valider</button>
     </div>
@@ -204,3 +205,11 @@
 	}
   ?>
   <script>function returnList() {window.location = "index.php?p=liste-articles";}</script>
+  <script language="JavaScript" type="text/javascript">
+
+    function goToSuppr(){
+      if(confirm("Etes-vous sur de vouloir supprimer cet article ?")) document.location.href = 'index.php?p=delete-art<?= '&art='.$numArt; ?>';
+      return false; //pour ne pas revenir au début de la page
+    }
+
+  </script>
