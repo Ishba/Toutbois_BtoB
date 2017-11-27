@@ -24,6 +24,15 @@
 
 				$DB2->query2('INSERT INTO ligne_commande (qte, id_com, id_produit) VALUES ('.$lineqte.', '.$idCde[0]->id_com.', '.$cdelineid.')');
 
+				// Soustraction des stocks pour chaque article commandé :
+				$qte = $DB2->query("SELECT qte_stock FROM produit WHERE id_produit = ".$cdelineid);
+				foreach ($qte as $quantite) {
+					$stock = $quantite->qte_stock;
+					$stock = $stock - $lineqte;
+					$DB2->query2("UPDATE produit SET qte_stock = '$stock' WHERE id_produit = ".$cdelineid);
+				}
+
+
 			}
 			?><div class="alert alert-success" role="alert">Votre commande est enregistrée<br>Numéro de commande : <?= $idCde[0]->id_com; ?></div><?php
 
