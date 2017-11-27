@@ -18,7 +18,7 @@
 		<div class="card_corps">
 			<h4 class="card-title"><?php echo $produit->designation; ?></h4>
 
-				<p class="prix">Prix : <?php echo number_format($produit->pu, 2, ',', ' '); ?></p>
+				<p class="prix">Prix : <?php echo number_format($produit->pu, 2, ',', ' '); ?> €</p>
 				<p class="float-droit">Remise : <?php echo $produit->remise; ?>%</p>
 
 			<a href="addpanier.php?id=<?= $produit->id_produit; ?>" class="btn btn-primary addPanier">Ajouter au panier</a>

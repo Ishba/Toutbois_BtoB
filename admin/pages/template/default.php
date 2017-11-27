@@ -17,10 +17,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="col-md-9">
             <ul class="navbar-nav">
-              <li class="nav-item <?php if($_GET['p'] == 'commandes' || $_GET['p'] == 'detail-cde') { echo 'active';} ?>">
+              <li class="nav-item <?php if(isset($_GET['p']) && ($_GET['p'] == 'commandes' || $_GET['p'] == 'detail-cde')) { echo 'active';} ?>">
                 <a class="nav-link" href="index.php?p=commandes">Suivi commandes<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item <?php if($_GET['p'] == 'liste-articles' || $_GET['p'] == 'detail-art') { echo 'active';} ?>">
+              <li class="nav-item <?php if(isset($_GET['p']) && ($_GET['p'] == 'liste-articles' || $_GET['p'] == 'detail-art')) { echo 'active';}  else { echo ' ';} ?>">
                 <a class="nav-link" href="index.php?p=liste-articles">Gestion des articles</a>
               </li>
             </ul>
@@ -33,7 +33,7 @@
                   <a class="nav-link" href="index.php?p=logout"><?= $_SESSION['user']; ?> Déconnexion</a>
                 </li>
               <?php else: ?>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="index.php?p=login">Connexion</a>
               </li>
             <?php endif; ?>
