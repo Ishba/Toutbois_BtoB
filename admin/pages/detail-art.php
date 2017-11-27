@@ -126,6 +126,7 @@
 
     if(isset($_POST) && !empty($_POST) && isset($_FILES['imagePdt']) && !empty($_FILES['imagePdt']) && isset($_FILES['imagePdtMini']) && !empty($_FILES['imagePdtMini'])) {
 
+      $numArt = $_GET['article'];
       $designation = htmlspecialchars($_POST['inputNomPdt']);
       $prixUnit = htmlspecialchars($_POST['inputPrixPdt']);
       $remise = htmlspecialchars($_POST['inputRemisePdt']);
@@ -195,7 +196,8 @@
         }
 
     		$db2 = new Database();
-    		$db2->query3("UPDATE produit SET designation = '$designation', image = '$nomImage', pu = '$prixUnit', remise = '$remise', qte_stock = '$stock' WHERE id_produit = ".$_GET['article']);
+    		$db2->query3("UPDATE produit SET designation = '$designation', image = '$nomImage', pu = '$prixUnit', remise = '$remise', qte_stock = '$stock' WHERE id_produit = ".$numArt);
+        
     		?><div class="alert alert-success" role="alert">Votre article est enregistrée !</div><?php
       }else {
         ?><div class="alert alert-danger" role="alert"><?= $erreur; ?></div><?php
