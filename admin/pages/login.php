@@ -33,11 +33,15 @@
       function login($username, $password) {
         $db = new Database();
         $user = $db->query2("SELECT * FROM admin WHERE nomAdmin = '$username' AND password = '$password'");
-        if(isset($user)) {
-          $_SESSION['auth'] = 'ADMIN';
-          $_SESSION['user'] = $username;
+        foreach ($user as $adm) {
+          $pseudo = $adm->nomAdmin;
+          $pass = $adm->password;
+          if($pseudo == $username && $pass == $password){
+            $_SESSION['auth'] = 'ADMIN';
+            $_SESSION['user'] = $username;
+            header('location: index.php?p=commandes');
+          } 
         }
-        header('location: index.php?p=commandes');
 
       }
 
