@@ -37,7 +37,7 @@
           $_SESSION['auth'] = 'ADMIN';
           $_SESSION['user'] = $username;
         }
-        var_dump($_SESSION);
+        header('location: index.php?p=commandes');
 
       }
 

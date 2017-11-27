@@ -27,9 +27,16 @@
           </div>
           <div class="col-md-3">
             <ul class="navbar-nav float-droit-menu">
+            <?php if (isset($_SESSION['auth']) && $_SESSION['auth'] == 'ADMIN'): ?>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="index.php?p=logout"><?= $_SESSION['user']; ?> Déconnexion</a>
+                </li>
+              <?php else: ?>
               <li class="nav-item">
-                <a class="nav-link" href="connexion.php">Connexion</a>
+                <a class="nav-link" href="index.php?p=login">Connexion</a>
               </li>
+            <?php endif; ?>
             </ul>
           </div>
         </div>
