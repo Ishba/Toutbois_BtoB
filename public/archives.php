@@ -23,11 +23,16 @@
 	$nbCollapse = 0;
 	foreach ($commandes as $commande) {
 		$numCde = $commande->id_com;
-		$dateCde = $commande->date_com;
 		$idUser = $commande->idUser;
 		$statut = $commande->statut_cde;
 		$prixTotalTTC = 0;
 		$nbCollapse += 1;
+		// Formatage de la date
+		$ladate = $commande->date_com;
+    list($date, $time) = explode(" ", $ladate);
+    list($year, $month, $day) = explode("-", $date);
+    list($hour, $min, $sec) = explode(":", $time);
+    $ladate = "$day/$month/$year  $time";
 
 		$produits = $DB->query('SELECT * FROM ligne_commande WHERE id_com = '.$numCde);
 ?>
@@ -36,7 +41,7 @@
     <div class="card-header" role="tab" id="heading<?= $nbCollapse; ?>">
       <h5 class="mb-0">
         <a data-toggle="collapse" href="#collapse<?= $nbCollapse; ?>" aria-expanded="true" aria-controls="collapse<?= $nbCollapse; ?>">
-          Commande n° <?= $numCde; ?> (<?= $dateCde; ?>)
+          Commande n° <?= $numCde; ?> - <?= $ladate; ?>
         </a>
 				<span class="float-right"><?= $statut; ?></span>
       </h5>
