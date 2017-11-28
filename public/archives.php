@@ -8,7 +8,7 @@
 
 
 <?php
-	if(empty($_SESSION['auth'])){
+	if(empty($_SESSION['auth']) || empty($_SESSION['id'])){
 		?>
 		<p>Vous devez vous <a href="connexion-client.php">connecter</a> pour visualiser l'historique de vos commandes.</p>
 		<?php
@@ -16,7 +16,9 @@
 
 
  ?>
- <?php $commandes = $DB->query("SELECT * FROM entete_commande WHERE idUser = ".$_SESSION['id']." ORDER BY id_com DESC"); ?>
+ <?php
+	$idClient = $_SESSION['id'];
+ 	$commandes = $DB->query("SELECT * FROM entete_commande WHERE idUser = $idClient ORDER BY id_com DESC"); ?>
 <?php
 	$nbCollapse = 0;
 	foreach ($commandes as $commande) {

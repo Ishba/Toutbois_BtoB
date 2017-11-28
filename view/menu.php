@@ -12,28 +12,28 @@
         <ul class="navbar-nav">
           <li class="nav-item
           <?php
-            if($url == '/toutbois_btob/public/index.php') { echo 'active';}
+            if($url == '/Toutbois_BtoB/public/index.php') { echo 'active';}
           ?>
           ">
             <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item
             <?php
-              if($url == '/toutbois_btob/public/catalogue.php') { echo 'active';}
+              if($url == '/Toutbois_BtoB/public/catalogue.php') { echo 'active';}
             ?>
           ">
             <a class="nav-link" href="catalogue.php">Commander</a>
           </li>
           <li class="nav-item
           <?php
-            if($url == '/toutbois_btob/public/archives.php') { echo 'active';}
+            if($url == '/Toutbois_BtoB/public/archives.php') { echo 'active';}
           ?>
           ">
             <a class="nav-link" href="archives.php">Commandes en cours</a>
           </li>
           <li class="nav-item
           <?php
-            if($url == '/toutbois_btob/public/panier.php') { echo 'active';}
+            if($url == '/Toutbois_BtoB/public/panier.php') { echo 'active';}
           ?>
           ">
             <a class="nav-link" href="panier.php">Panier <span class="badge badge-primary badge-pill"><span id="count"><?= $panier->count(); ?></span></span></a>
